@@ -1,0 +1,15 @@
+/* navbar.component.css */
+.dropdown-menu {
+    background-color: #08FD0C !important; /* Azul do Bootstrap ou cor desejada */
+    border: none;
+  }
+  
+  /* Opcional: ajustar cor dos itens para melhor contraste */
+  .dropdown-item {
+    color: black !important;
+    font-weight: bold;
+  }
+  
+  .dropdown-item:hover {
+    background-color: #0a9d0d !important;
+  }
