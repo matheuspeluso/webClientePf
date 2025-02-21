@@ -3,30 +3,56 @@
     <div class="card-header bg-primary text-white">
       <h4 class="mb-0">Cadastro de Cliente</h4>
     </div>
+
     <div class="card-body">
+      <div *ngIf="mensagem != ''">
+        <div class="alert alert-primary alert-dismissible fade show" role="alert">
+          <strong>{{ mensagem }}</strong>
+          <button (click)="mensagem = ''" type="button" class="btn-close" aria-label="Close"></button>
+        </div>
+      </div>
+
       <form [formGroup]="formulario" (ngSubmit)="cadastrarCliente()">
+
         <!-- Nome -->
         <div class="mb-3">
           <label for="nome" class="form-label">Nome</label>
           <input type="text" id="nome" class="form-control" formControlName="nome" required />
+
+          <!--Mensagem de validação do formulário reativo-->
+          <div class="text-danger" *ngIf="f['nome'].touched && f['nome'].invalid">
+            Por favor, informe o nome do cliente com pelo menos 8 caracteres.
+          </div>
         </div>
 
         <!-- Email -->
         <div class="mb-3">
           <label for="email" class="form-label">E-mail</label>
           <input type="email" id="email" class="form-control" formControlName="email" required />
+
+          <div class="text-danger" *ngIf="f['email'].touched && f['email'].invalid">
+            Por favor, informe um endereço de email válido.
+          </div>
         </div>
 
         <!-- CPF -->
         <div class="mb-3">
           <label for="cpf" class="form-label">CPF</label>
           <input type="text" id="cpf" class="form-control" formControlName="cpf" required />
+
+          <div class="text-danger" *ngIf="f['cpf'].touched && f['cpf'].invalid">
+            Por favor, informe um CPF com exatamente 11 dígitos.
+          </div>
         </div>
 
         <!-- Data de Nascimento -->
         <div class="mb-3">
           <label for="dataNascimento" class="form-label">Data de Nascimento</label>
           <input type="date" id="dataNascimento" class="form-control" formControlName="dataNascimento" required />
+
+          <div class="text-danger" *ngIf="f['dataNascimento'].touched && f['dataNascimento'].invalid">
+            Por favor, informe sua data de nascimento.
+          </div>
         </div>
 
         <!-- Endereço -->
@@ -37,30 +63,50 @@
             <div class="col-md-6 mb-3">
               <label for="logradouro" class="form-label">Logradouro</label>
               <input type="text" id="logradouro" class="form-control" formControlName="logradouro" required />
+
+              <div class="text-danger" *ngIf="e['logradouro'].touched && e['logradouro'].invalid">
+                Por favor, informe o logradouro com pelo menos 8 caracteres.
+              </div>
             </div>
 
             <!-- Número -->
             <div class="col-md-3 mb-3">
               <label for="numero" class="form-label">Número</label>
               <input type="text" id="numero" class="form-control" formControlName="numero" required />
+
+              <div class="text-danger" *ngIf="e['numero'].touched && e['numero'].invalid">
+                Por favor, informe o número da residência, o mesmo deve conter apenas letras, números, espaços ou traços.
+              </div>
             </div>
 
             <!-- Complemento -->
             <div class="col-md-3 mb-3">
               <label for="complemento" class="form-label">Complemento</label>
               <input type="text" id="complemento" class="form-control" formControlName="complemento" />
+
+              <div class="text-danger" *ngIf="e['complemento'].touched && e['complemento'].invalid">
+                Por favor, informe o complemento com pelo menos 4 caracteres.
+              </div>
             </div>
 
             <!-- Bairro -->
             <div class="col-md-6 mb-3">
               <label for="bairro" class="form-label">Bairro</label>
               <input type="text" id="bairro" class="form-control" formControlName="bairro" required />
+
+              <div class="text-danger" *ngIf="e['bairro'].touched && e['bairro'].invalid">
+                Por favor, informe o bairro com pelo menos 3 caracteres.
+              </div>
             </div>
 
             <!-- Cidade -->
             <div class="col-md-4 mb-3">
               <label for="cidade" class="form-label">Cidade</label>
               <input type="text" id="cidade" class="form-control" formControlName="cidade" required />
+
+              <div class="text-danger" *ngIf="e['cidade'].touched && e['cidade'].invalid">
+                Por favor, informe a cidade com pelo menos 3 caracteres.
+              </div>
             </div>
 
             <!-- UF -->
@@ -70,12 +116,20 @@
                 <option value="" disabled selected>Selecione</option>
                 <option *ngFor="let estado of estados" [value]="estado">{{ estado }}</option>
               </select>
+
+              <div class="text-danger" *ngIf="e['uf'].touched && e['uf'].invalid">
+                Por favor, o campo UF não pode ficar em branco.
+              </div>
             </div>
 
             <!-- CEP -->
             <div class="col-md-6 mb-3">
               <label for="cep" class="form-label">CEP</label>
               <input type="text" id="cep" class="form-control" formControlName="cep" required />
+
+              <div class="text-danger" *ngIf="e['cep'].touched && e['cep'].invalid">
+                Por favor, o campo CEP deve conter exatamente 8 dígitos.
+              </div>
             </div>
           </div>
         </div>
