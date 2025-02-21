@@ -13,11 +13,12 @@ export const routes: Routes = [
         component: ConsultaClientesComponent
     },
     {
-        path: "pages/clientes/edicao",
+        // Modificado para aceitar um parâmetro 'id' na URL
+        path: "pages/clientes/edicao/:id",
         component: EdicaoClintesComponent
     },
 
-    //Incluindo uma configuração para definir a página inicial do projeto
+    // Incluindo uma configuração para definir a página inicial do projeto
     {
         path: '', pathMatch: 'full',
         redirectTo: '/pages/clientes/consulta'

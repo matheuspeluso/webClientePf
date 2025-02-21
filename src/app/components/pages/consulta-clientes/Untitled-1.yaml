@@ -1,0 +1,16 @@
+service:
+    postgres:
+        image: postgres:latest
+        container_name: postgres_bd_atendimentos
+        restart: always
+        environment:
+            POSTGRES_USER: user_coti
+            POSTGRES_PASSWORD: coti2025
+            POSTGRES_DB: bd_atendimentos
+        ports:
+            - "5436:5432"
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+
+volumes:
+    postgres_data:

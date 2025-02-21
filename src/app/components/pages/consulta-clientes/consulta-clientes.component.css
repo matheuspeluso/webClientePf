@@ -1,0 +1,35 @@
+.card {
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .card-header {
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="date"],
+  select.form-select {
+    border-radius: 8px;
+  }
+  
+  button {
+    font-size: 1rem;
+  }
+  
+  .table {
+    margin-top: 20px;
+    border-radius: 8px;
+  }
+  
+  .table th,
+  .table td {
+    text-align: center;
+  }
+  
+  .table-responsive {
+    margin-top: 10px;
+  }
+  

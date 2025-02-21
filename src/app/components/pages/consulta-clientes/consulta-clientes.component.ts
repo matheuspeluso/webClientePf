@@ -2,13 +2,14 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-consulta-clientes',
   templateUrl: './consulta-clientes.component.html',
   styleUrls: ['./consulta-clientes.component.css'],
   standalone: true,
-  imports: [CommonModule, FormsModule] // Importa módulos necessários
+  imports: [CommonModule, FormsModule, RouterLink] // Importa módulos necessários
 })
 export class ConsultaClientesComponent implements OnInit {
   clientes: any[] = []; // Lista de clientes
@@ -32,6 +33,8 @@ export class ConsultaClientesComponent implements OnInit {
           console.error('Erro ao carregar clientes:', err);
         }
       });
+
+      this.filtroNome = "";
   }
 
   filtrarClientes(): void {
