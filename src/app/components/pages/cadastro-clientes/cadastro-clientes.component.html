@@ -29,55 +29,58 @@
           <input type="date" id="dataNascimento" class="form-control" formControlName="dataNascimento" required />
         </div>
 
-        <h5 class="mt-3">Endereço</h5>
-        <div class="row">
-          <!-- Logradouro -->
-          <div class="col-md-6 mb-3">
-            <label for="logradouro" class="form-label">Logradouro</label>
-            <input type="text" id="logradouro" class="form-control" formControlName="logradouro" required />
-          </div>
+        <!-- Endereço -->
+        <div formGroupName="endereco">
+          <h5 class="mt-3">Endereço</h5>
+          <div class="row">
+            <!-- Logradouro -->
+            <div class="col-md-6 mb-3">
+              <label for="logradouro" class="form-label">Logradouro</label>
+              <input type="text" id="logradouro" class="form-control" formControlName="logradouro" required />
+            </div>
 
-          <!-- Número -->
-          <div class="col-md-3 mb-3">
-            <label for="numero" class="form-label">Número</label>
-            <input type="text" id="numero" class="form-control" formControlName="numero" required />
-          </div>
+            <!-- Número -->
+            <div class="col-md-3 mb-3">
+              <label for="numero" class="form-label">Número</label>
+              <input type="text" id="numero" class="form-control" formControlName="numero" required />
+            </div>
 
-          <!-- Complemento -->
-          <div class="col-md-3 mb-3">
-            <label for="complemento" class="form-label">Complemento</label>
-            <input type="text" id="complemento" class="form-control" formControlName="complemento" />
-          </div>
+            <!-- Complemento -->
+            <div class="col-md-3 mb-3">
+              <label for="complemento" class="form-label">Complemento</label>
+              <input type="text" id="complemento" class="form-control" formControlName="complemento" />
+            </div>
 
-          <!-- Bairro -->
-          <div class="col-md-6 mb-3">
-            <label for="bairro" class="form-label">Bairro</label>
-            <input type="text" id="bairro" class="form-control" formControlName="bairro" required />
-          </div>
+            <!-- Bairro -->
+            <div class="col-md-6 mb-3">
+              <label for="bairro" class="form-label">Bairro</label>
+              <input type="text" id="bairro" class="form-control" formControlName="bairro" required />
+            </div>
 
-          <!-- Cidade -->
-          <div class="col-md-4 mb-3">
-            <label for="cidade" class="form-label">Cidade</label>
-            <input type="text" id="cidade" class="form-control" formControlName="cidade" required />
-          </div>
+            <!-- Cidade -->
+            <div class="col-md-4 mb-3">
+              <label for="cidade" class="form-label">Cidade</label>
+              <input type="text" id="cidade" class="form-control" formControlName="cidade" required />
+            </div>
 
-          <!-- UF -->
-          <div class="col-md-2 mb-3">
-            <label for="uf" class="form-label">UF</label>
-            <select id="uf" class="form-select" formControlName="uf" required>
-              <option value="" disabled selected>Selecione</option>
-              <option *ngFor="let estado of estados" [value]="estado">{{ estado }}</option>
-            </select>
-          </div>
+            <!-- UF -->
+            <div class="col-md-2 mb-3">
+              <label for="uf" class="form-label">UF</label>
+              <select id="uf" class="form-select" formControlName="uf" required>
+                <option value="" disabled selected>Selecione</option>
+                <option *ngFor="let estado of estados" [value]="estado">{{ estado }}</option>
+              </select>
+            </div>
 
-          <!-- CEP -->
-          <div class="col-md-6 mb-3">
-            <label for="cep" class="form-label">CEP</label>
-            <input type="text" id="cep" class="form-control" formControlName="cep" required />
+            <!-- CEP -->
+            <div class="col-md-6 mb-3">
+              <label for="cep" class="form-label">CEP</label>
+              <input type="text" id="cep" class="form-control" formControlName="cep" required />
+            </div>
           </div>
         </div>
 
-        <button type="submit" class="btn btn-success w-100" >Cadastrar Cliente</button>
+        <button type="submit" class="btn btn-success w-100" [disabled]="!formulario.valid || !formulario.get('endereco')?.valid"> Cadastrar Cliente</button>
       </form>
     </div>
   </div>

@@ -1,4 +1,5 @@
 import { CommonModule } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -15,6 +16,12 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 })
 
 export class CadastroClientesComponent {
+
+  constructor( //injeção de dependência para poder usar o HttpClient
+    private httpClient: HttpClient,
+  ) { }
+
+
   formulario = new FormGroup({
     nome: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
@@ -34,6 +41,15 @@ export class CadastroClientesComponent {
   estados = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'];
 
   cadastrarCliente() {
-    console.log(this.formulario.value);
+    this.httpClient.post('http://localhost:9000/clientes/cadastrar', 
+      this.formulario.value,
+      {responseType: 'text'}
+    )
+    .subscribe({
+      next: (data) => {
+        console.log(data);
+        alert('Cliente cadastrado com sucesso!');
+      }
+    })
   }
 }
