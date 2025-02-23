@@ -3,20 +3,24 @@
     <div class="card-header bg-primary text-white">
       <h4 class="mb-0">Consulta de Clientes</h4>
     </div>
+
     <div class="card-body">
       <!-- Campo de busca -->
       <div class="mb-4">
         <label for="filtroNome" class="form-label">Buscar por Nome</label>
         <div class="input-group">
-          <input
-            type="text"
-            id="filtroNome"
-            class="form-control"
-            placeholder="Digite o nome do cliente..."
-            [(ngModel)]="filtroNome"
-            (keyup)="filtrarClientes()"
-          />
+          <input type="text" id="filtroNome" class="form-control" placeholder="Digite o nome do cliente..."
+            [(ngModel)]="filtroNome" (keyup)="filtrarClientes()" />
           <button class="btn btn-danger" (click)="carregarClientes()">Limpar</button>
+
+          
+        </div>
+        <!--exibindo mensagem de retorno da api-->
+        <div *ngIf="mensagem != ''" class="class-alert-mensagem">
+          <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>{{ mensagem }}</strong>
+            <button (click)="mensagem = ''" type="button" class="btn-close" aria-label="Close"></button>
+          </div>
         </div>
       </div>
 
@@ -40,8 +44,11 @@
               <td>{{ cliente.dataNascimento | date:'dd/MM/yyyy' }}</td>
               <td>
                 <div class="d-grid gap-2">
-                  <button class="btn btn-primary btn-sm" [routerLink]="['/pages/clientes/edicao', cliente.id]">✏️ Editar</button>
+                  <button class="btn btn-primary btn-sm" [routerLink]="['/pages/clientes/edicao', cliente.id]">✏️
+                    Editar</button>
                   <button class="btn btn-secondary btn-sm">📍 Consultar Endereço</button>
+                  <button class="btn btn-danger btn-sm" (click)="excluirCliente(cliente.id)">🗑️ Excluir</button>
+
                 </div>
               </td>
             </tr>

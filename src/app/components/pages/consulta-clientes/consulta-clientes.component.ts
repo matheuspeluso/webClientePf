@@ -14,6 +14,7 @@ import { RouterLink } from '@angular/router';
 export class ConsultaClientesComponent implements OnInit {
   clientes: any[] = []; // Lista de clientes
   filtroNome: string = ''; // Filtro de busca
+  mensagem: string = ''; // Mensagem de retorno da api
 
   constructor(private httpClient: HttpClient) {}
 
@@ -46,4 +47,19 @@ export class ConsultaClientesComponent implements OnInit {
       );
     }
   }
+
+  excluirCliente(id:string){
+    if(confirm('Deseja realmente excluir o cliente selecionado?')){
+      this.httpClient.delete<any>('http://localhost:9000/clientes/excluir/' + id,
+      ).subscribe({
+        next:(data) => {
+          //armazenando a mensagem
+          this.mensagem = data.mensagem;
+          //executar a consulta novamente
+          this.ngOnInit();
+        }
+      });
+    }
+  }
+  
 }
