@@ -1,0 +1,91 @@
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-primary text-white">
+            <h4 class="mb-0">Cadastro de Endereço</h4>
+        </div>
+
+        <div class="card-body">
+            <div *ngIf="mensagem !== ''">
+                <div [class]="alertClass" role="alert">
+                    <strong>{{ mensagem }}</strong>
+                    <button (click)="mensagem = ''" type="button" class="btn-close" aria-label="Close"></button>
+                </div>
+            </div>
+
+            <form [formGroup]="formulario" (ngSubmit)="cadastrarEndereco()">
+
+                <!-- Logradouro -->
+                <div class="mb-3">
+                    <label for="logradouro" class="form-label">Logradouro</label>
+                    <input type="text" id="logradouro" class="form-control" formControlName="logradouro" required />
+                    <div class="text-danger" *ngIf="f['logradouro'].touched && f['logradouro'].invalid">
+                        Por favor, informe o logradouro com pelo menos 8 caracteres.
+                    </div>
+                </div>
+
+                <!-- Número -->
+                <div class="mb-3">
+                    <label for="numero" class="form-label">Número</label>
+                    <input type="text" id="numero" class="form-control" formControlName="numero" required />
+                    <div class="text-danger" *ngIf="f['numero'].touched && f['numero'].invalid">
+                        Por favor, informe o número da residência, o mesmo deve conter apenas letras, números, espaços
+                        ou traços.
+                    </div>
+                </div>
+
+                <!-- Complemento -->
+                <div class="mb-3">
+                    <label for="complemento" class="form-label">Complemento</label>
+                    <input type="text" id="complemento" class="form-control" formControlName="complemento" />
+                    <div class="text-danger" *ngIf="f['complemento'].touched && f['complemento'].invalid">
+                        Por favor, informe o complemento com pelo menos 4 caracteres.
+                    </div>
+                </div>
+
+                <!-- Bairro -->
+                <div class="mb-3">
+                    <label for="bairro" class="form-label">Bairro</label>
+                    <input type="text" id="bairro" class="form-control" formControlName="bairro" required />
+                    <div class="text-danger" *ngIf="f['bairro'].touched && f['bairro'].invalid">
+                        Por favor, informe o bairro com pelo menos 3 caracteres.
+                    </div>
+                </div>
+
+                <!-- Cidade -->
+                <div class="mb-3">
+                    <label for="cidade" class="form-label">Cidade</label>
+                    <input type="text" id="cidade" class="form-control" formControlName="cidade" required />
+                    <div class="text-danger" *ngIf="f['cidade'].touched && f['cidade'].invalid">
+                        Por favor, informe a cidade com pelo menos 3 caracteres.
+                    </div>
+                </div>
+
+                <!-- UF -->
+                <div class="mb-3">
+                    <label for="uf" class="form-label">UF</label>
+                    <select id="uf" class="form-select" formControlName="uf" required>
+                        <option value="" disabled selected>Selecione</option>
+                        <option *ngFor="let estado of estados" [value]="estado">{{ estado }}</option>
+                    </select>
+                    <div class="text-danger" *ngIf="f['uf'].touched && f['uf'].invalid">
+                        Por favor, o campo UF não pode ficar em branco.
+                    </div>
+                </div>
+
+                <!-- CEP -->
+                <div class="mb-3">
+                    <label for="cep" class="form-label">CEP</label>
+                    <input type="text" id="cep" class="form-control" formControlName="cep" required />
+                    <div class="text-danger" *ngIf="f['cep'].touched && f['cep'].invalid">
+                        Por favor, o campo CEP deve conter exatamente 8 dígitos.
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-success w-100"
+                    [disabled]="!formulario.valid">
+                    Cadastrar Endereço
+                </button>
+            </form>
+        </div>
+    </div>
+</div>

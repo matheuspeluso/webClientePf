@@ -50,7 +50,7 @@ export class ConsultaEnderecosComponent {
       ).subscribe({
         next:(data) => {
           //armazenando a mensagem
-          this.mensagem = data.mensagem;
+          this.mensagem = "Endereço excluído com sucesso!";
           //executar a consulta novamente
           this.ngOnInit();
         }

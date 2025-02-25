@@ -3,6 +3,7 @@ import { CadastroClientesComponent } from './components/pages/cadastro-clientes/
 import { ConsultaClientesComponent } from './components/pages/consulta-clientes/consulta-clientes.component';
 import { EdicaoClintesComponent } from './components/pages/edicao-clintes/edicao-clintes.component';
 import { ConsultaEnderecosComponent } from './components/pages/consulta-enderecos/consulta-enderecos.component';
+import { CadastroEnderecosComponent } from './components/pages/cadastro-enderecos/cadastro-enderecos.component';
 
 export const routes: Routes = [
     {
@@ -21,6 +22,10 @@ export const routes: Routes = [
     {
         path: "pages/clientes/enderecos/:idCliente",
         component: ConsultaEnderecosComponent
+    },
+    {
+        path: "pages/clientes/enderecos/cadastro/:idCliente",
+        component: CadastroEnderecosComponent
     },
 
     // Incluindo uma configuração para definir a página inicial do projeto
