@@ -1,1 +1,63 @@
-<p>edicao-clintes works!</p>
+<div class="container mt-4">
+    <div class="card shadow">
+      <div class="card-header bg-primary text-white">
+        <h4 class="mb-0">Atualizar Cliente</h4>
+      </div>
+  
+      <div class="card-body">
+        <div *ngIf="mensagem != ''">
+          <div class="alert alert-primary alert-dismissible fade show" role="alert">
+            <strong>{{ mensagem }}</strong>
+            <button (click)="mensagem = ''" type="button" class="btn-close" aria-label="Close"></button>
+          </div>
+        </div>
+  
+        <form [formGroup]="formulario" (ngSubmit)="editarCliente()">
+  
+          <!-- Nome -->
+          <div class="mb-3">
+            <label for="nome" class="form-label">Nome</label>
+            <input type="text" id="nome" class="form-control" formControlName="nome" required />
+  
+            <!--Mensagem de validação do formulário reativo-->
+            <div class="text-danger" *ngIf="f['nome'].touched && f['nome'].invalid">
+              Por favor, informe o nome do cliente com pelo menos 8 caracteres.
+            </div>
+          </div>
+  
+          <!-- Email -->
+          <div class="mb-3">
+            <label for="email" class="form-label">E-mail</label>
+            <input type="email" id="email" class="form-control" formControlName="email" required />
+  
+            <div class="text-danger" *ngIf="f['email'].touched && f['email'].invalid">
+              Por favor, informe um endereço de email válido.
+            </div>
+          </div>
+  
+          <!-- CPF -->
+          <div class="mb-3">
+            <label for="cpf" class="form-label">CPF</label>
+            <input type="text" id="cpf" class="form-control" formControlName="cpf" required />
+  
+            <div class="text-danger" *ngIf="f['cpf'].touched && f['cpf'].invalid">
+              Por favor, informe um CPF com exatamente 11 dígitos.
+            </div>
+          </div>
+  
+          <!-- Data de Nascimento -->
+          <div class="mb-3">
+            <label for="dataNascimento" class="form-label">Data de Nascimento</label>
+            <input type="date" id="dataNascimento" class="form-control" formControlName="dataNascimento" required />
+  
+            <div class="text-danger" *ngIf="f['dataNascimento'].touched && f['dataNascimento'].invalid">
+              Por favor, informe sua data de nascimento.
+            </div>
+          </div>
+  
+          <button type="submit" class="btn btn-success w-100" [disabled]="!formulario.valid"> Atualizar Cliente</button>
+        </form>
+      </div>
+    </div>
+  </div>
+  
