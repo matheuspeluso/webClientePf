@@ -20,6 +20,7 @@ export class EdicaoClintesComponent {
 
   mensagem: string = '';
   id: string = '';
+  alertClass: string = 'alert alert-primary alert-dismissible fade show';
 
   constructor( //injeção de dependência para poder usar o HttpClient
     private httpClient: HttpClient,
@@ -68,6 +69,12 @@ export class EdicaoClintesComponent {
       next: (data) => {
         //exibindo a mensagem obtida da API
         this.mensagem = data.mensagem;
+        this.alertClass = 'alert alert-primary alert-dismissible fade show';
+      },
+      error: (err) => {
+        console.error('Erro ao cadastrar cliente:', err);
+        this.mensagem = 'Erro ao atualizar cliente. Tente novamente.';
+        this.alertClass = 'alert alert-danger alert-dismissible fade show'; //alerta de erro
       }
     })
 

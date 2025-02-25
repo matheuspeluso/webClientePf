@@ -37,7 +37,7 @@
             </tr>
           </thead>
           <tbody>
-            <tr *ngFor="let cliente of clientes">
+            <tr *ngFor="let cliente of clientes | paginate: {itemsPerPage: 5, currentPage: paginador}">
               <td>{{ cliente.nome }}</td>
               <td>{{ cliente.email }}</td>
               <td>{{ cliente.cpf }}</td>
@@ -54,6 +54,14 @@
             </tr>
           </tbody>
         </table>
+
+        <!-- Régua de paginação -->
+        <div class="text-center mt-3">
+          <pagination-controls (pageChange)="handlePageChange($event)" previousLabel="Página anterior"
+            nextLabel="Próxima página" 
+          />
+        </div>
+
       </div>
     </div>
   </div>

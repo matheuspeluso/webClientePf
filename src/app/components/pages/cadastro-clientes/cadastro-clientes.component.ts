@@ -18,6 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 export class CadastroClientesComponent {
 
   mensagem: string = ''; //variavel para armazenar mensagem da api
+  alertClass: string = 'alert alert-primary alert-dismissible fade show'; // classe boostrap para estilizar a mensagem condicionalmente
 
   constructor( //injeção de dependência para poder usar o HttpClient
     private httpClient: HttpClient,
@@ -55,11 +56,13 @@ export class CadastroClientesComponent {
       .subscribe({
         next: (data) => {
           this.mensagem = data.mensagem; // Captura a mensagem da resposta
+          this.alertClass = 'alert alert-primary alert-dismissible fade show';
           this.formulario.reset(); // Limpa os campos do formulário
         },
         error: (err) => {
           console.error('Erro ao cadastrar cliente:', err);
-          alert('Erro ao cadastrar cliente. Tente novamente.');
+         this.mensagem = 'Erro ao cadastrar cliente';
+         this.alertClass = 'alert alert-danger alert-dismissible fade show';
         }
       });
   }

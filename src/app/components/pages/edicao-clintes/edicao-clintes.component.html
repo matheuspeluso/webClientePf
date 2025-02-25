@@ -6,7 +6,7 @@
   
       <div class="card-body">
         <div *ngIf="mensagem != ''">
-          <div class="alert alert-primary alert-dismissible fade show" role="alert">
+          <div [class]="alertClass" role="alert">
             <strong>{{ mensagem }}</strong>
             <button (click)="mensagem = ''" type="button" class="btn-close" aria-label="Close"></button>
           </div>
