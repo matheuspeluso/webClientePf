@@ -46,7 +46,7 @@
                 <div class="d-grid gap-2">
                   <button class="btn btn-primary btn-sm" [routerLink]="['/pages/clientes/edicao', cliente.id]">✏️
                     Editar</button>
-                  <button class="btn btn-secondary btn-sm">📍 Consultar Endereço</button>
+                  <button class="btn btn-secondary btn-sm" [routerLink]="['/pages/clientes/enderecos', cliente.id]">📍 Consultar Endereço</button>
                   <button class="btn btn-danger btn-sm" (click)="excluirCliente(cliente.id)">🗑️ Excluir</button>
 
                 </div>

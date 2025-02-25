@@ -2,6 +2,7 @@ import { Routes } from '@angular/router';
 import { CadastroClientesComponent } from './components/pages/cadastro-clientes/cadastro-clientes.component';
 import { ConsultaClientesComponent } from './components/pages/consulta-clientes/consulta-clientes.component';
 import { EdicaoClintesComponent } from './components/pages/edicao-clintes/edicao-clintes.component';
+import { ConsultaEnderecosComponent } from './components/pages/consulta-enderecos/consulta-enderecos.component';
 
 export const routes: Routes = [
     {
@@ -16,6 +17,10 @@ export const routes: Routes = [
         // Modificado para aceitar um parâmetro 'id' na URL
         path: "pages/clientes/edicao/:id",
         component: EdicaoClintesComponent
+    },
+    {
+        path: "pages/clientes/enderecos/:idCliente",
+        component: ConsultaEnderecosComponent
     },
 
     // Incluindo uma configuração para definir a página inicial do projeto
