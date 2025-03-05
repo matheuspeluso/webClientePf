@@ -3,8 +3,16 @@ Esse FrontEnd está integrado com a [ClietesAPI](https://github.com/matheuspelus
 
 Projeto gerado usando [Angular CLI](https://github.com/angular/angular-cli) na versão 19.1.7.
 
-## Requisitos para clonar e rodar o projeto
+## Prints do projeto
+<img src="./prints_projeto/consulta_cliente.png"> 
+<img src="./prints_projeto/cadastro_cliente01.png">
+<img src="./prints_projeto/cadastro_cliente02.png">
+<img src="./prints_projeto/edicao_cliente.png">  
+<img src="./prints_projeto/consulta_endereco.png">
+<img src="./prints_projeto/cadastro_endereco.png">
+<img src="./prints_projeto/edicao_endereco.png">  
 
+## Requisitos para clonar e rodar o projeto
 - Git
 - [Node](https://nodejs.org/)
 - AngularCLI
