@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { environment } from '../../../environments/environment';
 
 
 @Component({
@@ -11,7 +13,10 @@ import { ActivatedRoute } from '@angular/router';
   imports: [
     FormsModule, 
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskDirective,
+  ],
+  providers: [provideNgxMask()
   ],
   templateUrl: './edicao-clintes.component.html',
   styleUrl: './edicao-clintes.component.css'
@@ -32,7 +37,7 @@ export class EdicaoClintesComponent {
     this.id = this.activatedRoute.snapshot.paramMap.get('id') as string;
 
     //consultando o cliente na API através do ID
-    this.httpClient.get<any>('http://localhost:9000/clientes/consultar/' + this.id)
+    this.httpClient.get<any>(environment.apiCliente +'/clientes/consultar/' + this.id)
       .subscribe({
         next: (data) => {
 
@@ -63,7 +68,7 @@ export class EdicaoClintesComponent {
   editarCliente() {
     
     //enviando uma requisição PUT para a API (atualizar o cliente)
-    this.httpClient.put<any>('http://localhost:9000/clientes/alterar/'+ this.id,
+    this.httpClient.put<any>(environment.apiCliente +'/clientes/alterar/'+ this.id,
       this.formulario.value, //enviando os dados do formulário
     ).subscribe({
       next: (data) => {

@@ -2,12 +2,18 @@ import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ActivatedRoute, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-consulta-enderecos',
   imports: [
     RouterLink,
-    CommonModule
+    CommonModule,
+    NgxMaskPipe
+  ],
+  providers: [
+    provideNgxMask()
   ],
   templateUrl: './consulta-enderecos.component.html',
   styleUrl: './consulta-enderecos.component.css'
@@ -29,7 +35,7 @@ export class ConsultaEnderecosComponent {
     this.idCliente = this.activatedRoute.snapshot.paramMap.get('idCliente') as string;
 
     // Chamando a API para buscar os endereços do cliente
-    this.httpClient.get<any[]>(`http://localhost:9000/cliente/enderecos/consultar/${this.idCliente}`)
+    this.httpClient.get<any[]>(environment.apiCliente +`/cliente/enderecos/consultar/${this.idCliente}`)
       .subscribe({
         next: (data) => {
           if (data.length > 0) {
@@ -46,7 +52,7 @@ export class ConsultaEnderecosComponent {
 
   excluirEndereco(id:string){
     if(confirm('Deseja realmente excluir o endereço selecionado?')){
-      this.httpClient.delete<any>('http://localhost:9000/cliente/enderecos/excluir/' + id,
+      this.httpClient.delete<any>(environment.apiCliente +'/cliente/enderecos/excluir/' + id,
       ).subscribe({
         next:(data) => {
           //armazenando a mensagem

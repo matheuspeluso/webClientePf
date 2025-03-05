@@ -1,7 +1,7 @@
 <div class="container mt-4">
     <div class="card shadow">
         <div class="card-header bg-primary text-white">
-            <h4 class="mb-0">Cadastro de Endereço</h4>
+            <h4 class="mb-0">Edição de Endereço</h4>
         </div>
 
         <div class="card-body">
@@ -12,7 +12,7 @@
                 </div>
             </div>
 
-            <form [formGroup]="formulario" (ngSubmit)="cadastrarEndereco()">
+            <form [formGroup]="formulario" (ngSubmit)="editarEndereco()">
 
                 <!-- Logradouro -->
                 <div class="mb-3">
@@ -20,16 +20,6 @@
                     <input type="text" id="logradouro" class="form-control" formControlName="logradouro" required />
                     <div class="text-danger" *ngIf="f['logradouro'].touched && f['logradouro'].invalid">
                         Por favor, informe o logradouro com pelo menos 8 caracteres.
-                    </div>
-                </div>
-
-                <!-- Número -->
-                <div class="mb-3">
-                    <label for="numero" class="form-label">Número</label>
-                    <input type="text" id="numero" class="form-control" formControlName="numero" required />
-                    <div class="text-danger" *ngIf="f['numero'].touched && f['numero'].invalid">
-                        Por favor, informe o número da residência, o mesmo deve conter apenas letras, números, espaços
-                        ou traços.
                     </div>
                 </div>
 
@@ -41,6 +31,17 @@
                         Por favor, informe o complemento com pelo menos 4 caracteres.
                     </div>
                 </div>
+                
+                <!-- Número -->
+                <div class="mb-3">
+                    <label for="numero" class="form-label">Número</label>
+                    <input type="text" id="numero" class="form-control" formControlName="numero" required />
+                    <div class="text-danger" *ngIf="f['numero'].touched && f['numero'].invalid">
+                        Por favor, informe o número da residência, o mesmo deve conter apenas letras, números, espaços
+                        ou traços.
+                    </div>
+                </div>
+
 
                 <!-- Bairro -->
                 <div class="mb-3">
@@ -75,15 +76,14 @@
                 <!-- CEP -->
                 <div class="mb-3">
                     <label for="cep" class="form-label">CEP</label>
-                    <input type="text" id="cep" class="form-control" formControlName="cep" required mask="00.000-000"/>
+                    <input type="text" id="cep" class="form-control" formControlName="cep" required mask="00.000-000" />
                     <div class="text-danger" *ngIf="f['cep'].touched && f['cep'].invalid">
                         Por favor, o campo CEP deve conter exatamente 8 dígitos.
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-success w-100"
-                    [disabled]="!formulario.valid">
-                    Cadastrar Endereço
+                <button type="submit" class="btn btn-success w-100" [disabled]="!formulario.valid">
+                    Editar Endereço
                 </button>
             </form>
         </div>

@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-cadastro-clientes',
@@ -11,7 +13,10 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
   imports: [
     FormsModule, 
     CommonModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgxMaskDirective,
+  ],
+  providers: [provideNgxMask()
   ],
 })
 
@@ -52,7 +57,7 @@ export class CadastroClientesComponent {
   estados = ['AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA', 'MT', 'MS', 'MG', 'PA', 'PB', 'PR', 'PE', 'PI', 'RJ', 'RN', 'RS', 'RO', 'RR', 'SC', 'SP', 'SE', 'TO'];
 
   cadastrarCliente() {
-    this.httpClient.post<any>('http://localhost:9000/clientes/cadastrar', this.formulario.value)
+    this.httpClient.post<any>(environment.apiCliente + '/clientes/cadastrar', this.formulario.value)
       .subscribe({
         next: (data) => {
           this.mensagem = data.mensagem; // Captura a mensagem da resposta

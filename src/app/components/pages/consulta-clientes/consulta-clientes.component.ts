@@ -4,6 +4,8 @@ import { HttpClient } from '@angular/common/http';
 import { RouterLink } from '@angular/router';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { FormsModule } from '@angular/forms';
+import { NgxMaskPipe, provideNgxMask } from 'ngx-mask';
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-consulta-clientes',
@@ -15,7 +17,11 @@ import { FormsModule } from '@angular/forms';
     RouterLink,
     FormsModule,
     NgxPaginationModule,
-  ] // Importa módulos necessários
+    NgxMaskPipe
+  ], // Importa módulos necessários
+  providers: [
+    provideNgxMask()
+  ],
 })
 export class ConsultaClientesComponent{
 
@@ -32,7 +38,7 @@ export class ConsultaClientesComponent{
   }
 
   carregarClientes(): void {
-    this.httpClient.get<any>('http://localhost:9000/clientes/consultar')
+    this.httpClient.get<any>(environment.apiCliente +'/clientes/consultar')
       .subscribe({
         next: (data) => {
           this.clientes = data as any[]; // Atribui os dados recebidos à lista de clientes
@@ -58,7 +64,7 @@ export class ConsultaClientesComponent{
 
   excluirCliente(id:string){
     if(confirm('Deseja realmente excluir o cliente selecionado?')){
-      this.httpClient.delete<any>('http://localhost:9000/clientes/excluir/' + id,
+      this.httpClient.delete<any>(environment.apiCliente +'/clientes/excluir/' + id,
       ).subscribe({
         next:(data) => {
           //armazenando a mensagem

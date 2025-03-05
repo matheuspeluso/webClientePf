@@ -39,10 +39,10 @@
                             <td>{{ endereco.bairro }}</td>
                             <td>{{ endereco.cidade }}</td>
                             <td>{{ endereco.uf }}</td>
-                            <td>{{ endereco.cep }}</td>
+                            <td>{{ endereco.cep | mask: "00.000-000" }}</td>
                             <td>
                                 <button class="btn btn-primary btn-sm me-2"
-                                    [routerLink]="['/pages/clientes/enderecos/editar', endereco.id]">
+                                    [routerLink]="['/pages/clientes/enderecos/edicao', idCliente, endereco.id]">
                                     ✏️ Editar
                                 </button>
                                 <button class="btn btn-danger btn-sm" (click)="excluirEndereco(endereco.id)" [disabled]="enderecos.length <= 1">

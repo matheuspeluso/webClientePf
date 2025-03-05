@@ -40,7 +40,7 @@
             <tr *ngFor="let cliente of clientes | paginate: {itemsPerPage: 5, currentPage: paginador}">
               <td>{{ cliente.nome }}</td>
               <td>{{ cliente.email }}</td>
-              <td>{{ cliente.cpf }}</td>
+              <td>{{ cliente.cpf | mask: "000.000.000-00" }}</td>
               <td>{{ cliente.dataNascimento | date:'dd/MM/yyyy' }}</td>
               <td>
                 <div class="d-grid gap-2">
